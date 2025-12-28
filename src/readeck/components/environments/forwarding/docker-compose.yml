@@ -1,0 +1,4 @@
+services:
+  readeck:
+    ports:
+      - 8000:8000

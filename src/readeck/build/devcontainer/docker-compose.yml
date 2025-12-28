@@ -1,0 +1,25 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "${LOG_MAX_SIZE:-10m}"
+    max-file: "${LOG_MAX_FILE:-3}"
+    compress: "${LOG_COMPRESS:-true}"
+services:
+  readeck:
+    container_name: readeck
+    image: codeberg.org/readeck/readeck:latest
+    restart: unless-stopped
+    logging: *default-logging
+    volumes:
+      - readeck-data:/readeck
+    networks:
+      - readeck-network
+      - readeck-workspace-network
+volumes:
+  readeck-data:
+    name: readeck-data
+networks:
+  readeck-network:
+    name: readeck-network
+  readeck-workspace-network:
+    external: true

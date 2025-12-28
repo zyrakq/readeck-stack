@@ -1,0 +1,8 @@
+services:
+  readeck:
+    networks:
+      - readeck-workspace-network
+
+networks:
+  readeck-workspace-network:
+    external: true
